@@ -113,7 +113,20 @@ public:
 		return (Tokay / Total)*100;
 	}
 
+	map<int, bool> getMatrix() {
+		return matrixP;
+	}
 
+	void displayOkay() {
+		cout << "======\nVerify:" << endl;
+		
+		for (map<int, bool>::iterator it = matrixP.begin(); it != matrixP.end(); ++it) {
+			
+			if (it->second) {
+				cout << it->first << " IS GOOD." << endl;
+			}
+		}
+	}
 
 private:
 	map<int, bool> matrixP;
