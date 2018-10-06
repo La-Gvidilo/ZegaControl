@@ -101,6 +101,9 @@ public:
 				}
 			}
 		}
+		d1 = delta1;
+		d2 = delta2;
+		d3 = delta3;
 	}
 
 	double getRatio() {
@@ -128,8 +131,33 @@ public:
 		}
 	}
 
-private:
-	map<int, bool> matrixP;
+	string getBinOut() {
+		stringstream SS1;
+		for (int i = 0; i != 100; i++) {
+			if (matrixP[i]) {
+				SS1 << "1";
+			}
+			else {
+				SS1 << "0";
+			}
+			if (i + 1 != 100) { SS1 << ","; }
+		}
+		return SS1.str();
+	}
 
+	void create_csv_brain() {
+		fstream fichier;
+		fichier.open("ZegaNext.csv", fstream::out | fstream::app);
+		//for (map<int, bool>::iterator it = matrixP.begin(); it != matrixP.end(); ++it) {
+		fichier << d1 << "," << d2 << "," << d3 << "," << getBinOut() << endl;
+		//}
+		fichier.close();
+	}
+
+private:
+	double d1;
+	double d2;
+	double d3;
+	map<int, bool> matrixP;
 	friend bool is_pair(double x);
 };
